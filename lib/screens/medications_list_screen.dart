@@ -9,7 +9,9 @@ class MedicationsListScreen extends StatelessWidget {
       body: MedicationsListWidget(),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.plus_one),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/medication_input_screen');
+        },
       ),
     );
   }

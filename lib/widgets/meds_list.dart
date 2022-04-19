@@ -7,6 +7,7 @@ import 'package:simple_meds/utils.dart';
 class MedicationsListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    int test = 5;
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
