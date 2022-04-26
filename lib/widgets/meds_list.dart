@@ -5,13 +5,19 @@ import 'package:simple_meds/models/intake.dart';
 import 'package:simple_meds/utils.dart';
 
 class MedicationsListWidget extends StatelessWidget {
+  final List<Intake>? intakeList;
+
+  const MedicationsListWidget({Key? key, this.intakeList}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    int test = 5;
+    if(intakeList == null || intakeList!.isEmpty) {
+      return Center(child: Text("No history found, add some meds."),);
+    }
+
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
-        children: getTestMeds().map((intake) => IntakeWidget(intake)).toList(),
+        children: intakeList!.map((intake) => IntakeWidget(intake)).toList(),
       ),
     );
   }

@@ -1,7 +1,7 @@
 
 class Medication {
-  final String title;
-  final double dosage;
+  String title;
+  double dosage;
 
   Medication(this.title, this.dosage);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:simple_meds/models/intake.dart';
 import 'package:simple_meds/models/medication.dart';
 
@@ -38,15 +39,28 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
           TextField(
             decoration: InputDecoration(labelText: "Medication"),
             controller: medController,
+            onChanged: (newText) {
+              _intake.med.title = newText;
+            },
           ),
           TextField(
-            decoration: InputDecoration(labelText: "Dose"),
-            controller: doseController,
-          ),
+              decoration: InputDecoration(labelText: "Dose"),
+              controller: doseController,
+              keyboardType: TextInputType.number,
+              onChanged: (newText) {
+                _intake.med.dosage = double.parse(newText);
+              },
+              inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))]),
           TextField(
             decoration: InputDecoration(labelText: "Date"),
             controller: dateController,
           ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(child: Text("Save"),onPressed: () {
+              Navigator.pop(context, _intake);
+            },),
+          )
         ],
       ),
     );
