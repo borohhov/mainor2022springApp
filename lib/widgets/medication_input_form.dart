@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:simple_meds/models/intake.dart';
 import 'package:simple_meds/models/medication.dart';
+import 'package:simple_meds/providers/intake_list_provider.dart';
 
 class MedicationInputForm extends StatefulWidget {
-  const MedicationInputForm({Key? key}) : super(key: key);
+  const MedicationInputForm({Key? key, this.intake}) : super(key: key);
+  final Intake? intake;
 
   @override
   State<MedicationInputForm> createState() => _MedicationInputFormState();
@@ -19,7 +22,9 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   void initState() {
-    _intake = Intake(Medication("", 0), DateTime.now());
+    // isSomethingTrue ? doSomething : doSomethingElse;
+    // isSomethingNull ?? ifYesThenDoSomethingAboutIt // (if not Null just assign the value)
+    _intake = widget.intake ?? Intake(Medication("", 0), DateTime.now());
     medController.text = _intake.med.title;
     doseController.text = _intake.med.dosage.toString();
     dateController.text = _intake.dateTime.toString();
@@ -28,12 +33,13 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
 
   @override
   Widget build(BuildContext context) {
+    String header = widget.intake != null  ? "Amend Medication Intake" : "Record Medication Intake";
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
           Text(
-            "Record Medication Intake",
+            header,
             style: TextStyle(fontSize: 20),
           ),
           TextField(
@@ -58,7 +64,14 @@ class _MedicationInputFormState extends State<MedicationInputForm> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(child: Text("Save"),onPressed: () {
-              Navigator.pop(context, _intake);
+              if(widget.intake == null) {
+                Provider.of<IntakeListProvider>(context, listen: false).add(
+                    _intake);
+              }
+              else {
+                Provider.of<IntakeListProvider>(context, listen: false).update();
+              }
+              Navigator.pop(context);
             },),
           )
         ],

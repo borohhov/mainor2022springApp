@@ -30,18 +30,22 @@ class IntakeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.medication_outlined),
-            title: Text(
-                intake.med.title + " | " + intake.med.dosage.toString() + ' mg',
-            style: const TextStyle(fontSize: 20),),
-            subtitle: Text(DateFormat('yyyy/MM/dd hh:mm').format(intake.dateTime)),
-          ),
-        ],
+    return GestureDetector(onTap: () async {
+      await Navigator.pushNamed(context, '/medication_input_screen',arguments: intake);
+    },
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.medication_outlined),
+              title: Text(
+                  intake.med.title + " | " + intake.med.dosage.toString() + ' mg',
+              style: const TextStyle(fontSize: 20),),
+              subtitle: Text(DateFormat('yyyy/MM/dd hh:mm').format(intake.dateTime)),
+            ),
+          ],
+        ),
       ),
     );
   }
