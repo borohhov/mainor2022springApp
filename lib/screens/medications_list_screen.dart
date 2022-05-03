@@ -9,8 +9,16 @@ class MedicationsListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: MedicationsListWidget(
-        intakeList: Provider.of<IntakeListProvider>(context).intakes,
+      body: FutureBuilder<List<Intake>>(
+        future: Provider.of<IntakeListProvider>(context).getAllIntakes(),
+        builder: (context, snapshot) {
+          if(snapshot.connectionState == ConnectionState.done && snapshot.hasData){
+            return MedicationsListWidget(
+              intakeList: snapshot.data,
+            );
+          }
+          return Center(child: Text("Loading..."),);
+        }
       ),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.plus_one),

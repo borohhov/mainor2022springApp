@@ -10,7 +10,7 @@ class Medication {
         dosage = json['dosage'];
 
   Map<String, dynamic> toJson() => {
-    'med': title,
+    'title': title,
     'dosage': dosage,
   };
 }
