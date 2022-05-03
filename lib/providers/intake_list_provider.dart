@@ -2,14 +2,16 @@ import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:simple_meds/models/intake.dart';
+import 'package:simple_meds/services/persistence/persistence_service.dart';
+import 'package:simple_meds/services/persistence/persistence_service_impl.dart';
 
 class IntakeListProvider extends ChangeNotifier {
-  final List<Intake> _intakes = [];
+  PersistenceServiceImpl persistence = PersistenceServiceImpl();
 
-  UnmodifiableListView<Intake> get intakes => UnmodifiableListView(_intakes);
+  UnmodifiableListView<Intake> get intakes => UnmodifiableListView(persistence.getAllIntakes());
 
   void add(Intake intake) {
-    _intakes.add(intake);
+    persistence.add(intake);
     notifyListeners();
   }
 
