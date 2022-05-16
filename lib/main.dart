@@ -4,7 +4,10 @@ import 'package:simple_meds/screens/medication_input_screen.dart';
 import 'package:simple_meds/screens/medications_list_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider<IntakeListProvider>(
       create: (context) => IntakeListProvider(),

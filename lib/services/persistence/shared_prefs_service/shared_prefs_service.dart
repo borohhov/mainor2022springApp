@@ -34,5 +34,4 @@ class SharedPreferencesService implements PersistenceService {
         .toList();
     return intakes;
   }
-
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "834444451033",
+    "project_id": "mainor-test-2022",
+    "storage_bucket": "mainor-test-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834444451033:android:6aaca58a135aa5e0d932c8",
+        "android_client_info": {
+          "package_name": "com.example.simple_meds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834444451033-78lfr7g5s0n314tt5uc9fi5gde2tfmcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7CbghrWI8h1rZJED20XDPa3Yh7dm_Z7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834444451033-78lfr7g5s0n314tt5uc9fi5gde2tfmcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
